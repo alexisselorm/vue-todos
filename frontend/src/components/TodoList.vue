@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <h1>Todolist</h1>
     <todo-form @send-message="createTodo"></todo-form>
     <el-row>
@@ -24,6 +24,10 @@
         </el-table-column>
     </el-table>
 
+</template> -->
+
+<template>
+    {{ todos }}
 </template>
 <script setup>
 import createTodo from '@/api/createTodo';
@@ -32,7 +36,7 @@ import deleteTodo from '@/api/deleteTodo';
 import { ref } from 'vue';
 
 
-const todos = ref([]);
+const todos = await loadTodos();
 const cancelDelete = async () => {
     console.log("Cancel the delete")
 }
@@ -49,46 +53,8 @@ export default {
         TodoForm,
     },
     async mounted() {
-        loadTodos();
+        await loadTodos();
     },
-    // async loadTodos(){
-    //     const response = await this.axios.get(`http://127.0.0.1:8000/api/todos`);
-    //     this.todos = response.data;
-    // }
-    // async createTodo(todo: any){
-    //     console.log('Todo', todo);
-    //     await this.axios.post(`http://127.0.0.1:8000/api/todos`, {
-    //         title: todo.title,
-    //         completed: todo.completed
-    //     })
-    //     ElMessage({
-    //         message: "Todo created",
-    //         type:'success'
-    //     });
-    //     await this.loadTodos();
-    // }
-
-    // async updateTodo(todo: Todo){
-    //     console.log('Todo', todo);
-    //     await this.axios.put(`http://127.0.0.1:8000/api/todos/${todo.id}`, {
-    //         id: todo.id,
-    //         title: todo.title,
-    //         completed: todo.completed
-    //     })
-    //     ElMessage({
-    //         message: "Todo updated",
-    //         type:'success'
-    //     });
-    //     // await this.loadTodos();
-    // }
-    // async deleteTodo(todo:Todo){
-    //     await this.axios.delete(`http://127.0.0.1:8000/api/todos/${todo.id}`);
-    //     ElMessage({
-    //         message: "Todo deleted",
-    //         type:'success'
-    //     });
-    //     await this.loadTodos();
-    // }
 
 }
 </script>
