@@ -23,35 +23,51 @@
             </template>
         </el-table-column>
     </el-table>
-
 </template> -->
-
 <template>
-    {{ todos }}
+    <div class="relative overflow-x-auto">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">TODO TITLE</th>
+                    <th scope="col" class="px-6 py-3">DONE?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        Apple MacBook Pro 17"
+                    </th>
+                    <td class="px-6 py-4">Sliver</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </template>
-<script setup lang="ts">
-import createTodo from "@/api/createTodo";
-import updateTodo from "@/api/updateTodo";
-import deleteTodo from "@/api/deleteTodo";
-import { ref } from "vue";
 
-const todos = await loadTodos();
+<!-- <template>
+    {{ todos }}
+</template> -->
+<script setup lang="ts">
+// import createTodo from '@/api/createTodo'
+// import updateTodo from '@/api/updateTodo'
+// import deleteTodo from '@/api/deleteTodo'
+// import { ref } from 'vue'
+
 const cancelDelete = async () => {
-    console.log("Cancel the delete");
-};
+    console.log('Cancel the delete')
+}
 </script>
 
 <script lang="ts">
-import loadTodos from "@/api/loadTodos";
-import TodoForm from "./TodoForm.vue";
+import { loadTodos } from '@/api/loadTodos'
 
 export default {
-    name: "TodoList",
-    components: {
-        TodoForm,
-    },
+    name: 'TodoList',
+    components: {},
     async mounted() {
-        await loadTodos();
+        const todos = await loadTodos()
+        console.log(todos)
     },
-};
+}
 </script>

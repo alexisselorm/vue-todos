@@ -1,33 +1,31 @@
 <template>
-    <!-- <el-form @submit.prevent :inline="true" :model="formInput" class="todo-form-input">
-        <el-form-item label="Title" prop="title">
-            <el-input v-model="formInput.title" placeholder="Enter Todo"></el-input>
-        </el-form-item>
-        <el-form-item>
-            <el-button type="primary" @click="onSubmit()">Add</el-button>
-        </el-form-item>
-    </el-form> -->
-    I'm a form
+    <form @submit.prevent :inline="true" :model="formInput" class="todo-form-input">
+        <div class="mb-6">
+            <label for="default-input" class="block mb-2 text-sm font-medium">Default input</label>
+            <input type="text" v-model="formInput.title" id="default-input"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+        </div>
+        <button @click="onSubmit()">Add</button>
+    </form>
 </template>
 
 <script setup lang="ts">
-import { loadTodos } from "@/api/loadTodos";
-
+import { createTodo } from '@/api/createTodo'
 const formInput = {
-    title: "",
+    title: '',
     completed: false,
-};
+}
 const onSubmit = () => {
-    console.log(formInput);
-};
+    createTodo({
+        title: formInput.title,
+        completed: false,
+    })
+    console.log(formInput)
+}
 </script>
 
 <script lang="ts">
 export default {
-    name: "TodoForm",
-    async mounted() {
-        const todos = await loadTodos();
-        console.log(todos);
-    },
-};
+    name: 'TodoForm',
+}
 </script>

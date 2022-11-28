@@ -1,8 +1,8 @@
 import axios from "axios";
-import loadTodos from "./loadTodos";
+import { loadTodos } from "./loadTodos";
 import type Todo from "./types";
 
-const createTodo = async (todo: Todo) => {
+export const createTodo = async (todo: Todo) => {
   console.log("Todo", todo);
   await axios.post<Todo>(`http://127.0.0.1:8000/api/todos`, {
     title: todo.title,
@@ -10,5 +10,3 @@ const createTodo = async (todo: Todo) => {
   });
   await loadTodos();
 };
-
-export default createTodo;
