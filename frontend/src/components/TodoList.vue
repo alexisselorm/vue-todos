@@ -31,15 +31,22 @@
                 <tr>
                     <th scope="col" class="px-6 py-3">TODO TITLE</th>
                     <th scope="col" class="px-6 py-3">DONE?</th>
+                    <th scope="col" class="px-6 py-3">DELETE</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="todo in todos" :key="todo.id"
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <tr v-for="todo in todos" :key="todo.id" class="">
+                    <th scope="row" class="px-6 py-4 font-medium">
                         {{ todo.title }}
                     </th>
-                    <td class="px-6 py-4">Sliver</td>
+                    <td class="px-6 py-4">
+                        <input v-model="todo.completed" @click="updateTodo(todo.id)" type="checkbox" id="html"
+                            name="fav_language" />
+                    </td>
+                    <td class="px-6 py-4">
+                        <button @click="deleteTodo(todo.id)" type="submit"
+                            class="p-1 text-red-500 bg-red-200 border border-red-600 rounded-full">Delete</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -52,8 +59,8 @@
 <script setup lang="ts">
 import { loadTodos } from "@/api/loadTodos";
 import type Todo from "@/api/types";
-// import updateTodo from '@/api/updateTodo'
-// import deleteTodo from '@/api/deleteTodo'
+import { updateTodo } from '@/api/updateTodo'
+import { deleteTodo } from '@/api/deleteTodo'
 
 const cancelDelete = async () => {
     console.log("Cancel the delete");
