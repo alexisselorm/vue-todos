@@ -29,23 +29,21 @@
 <template>
     {{ todos }}
 </template>
-<script setup>
-import createTodo from '@/api/createTodo';
-import updateTodo from '@/api/updateTodo';
-import deleteTodo from '@/api/deleteTodo';
-import { ref } from 'vue';
-
+<script setup lang="ts">
+import createTodo from "@/api/createTodo";
+import updateTodo from "@/api/updateTodo";
+import deleteTodo from "@/api/deleteTodo";
+import { ref } from "vue";
 
 const todos = await loadTodos();
 const cancelDelete = async () => {
-    console.log("Cancel the delete")
-}
+    console.log("Cancel the delete");
+};
 </script>
 
 <script lang="ts">
-import loadTodos from '@/api/loadTodos';
-import TodoForm from './TodoForm.vue';
-
+import loadTodos from "@/api/loadTodos";
+import TodoForm from "./TodoForm.vue";
 
 export default {
     name: "TodoList",
@@ -55,6 +53,5 @@ export default {
     async mounted() {
         await loadTodos();
     },
-
-}
+};
 </script>

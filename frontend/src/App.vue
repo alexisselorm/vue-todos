@@ -1,37 +1,46 @@
-<template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <el-container>
-    <el-main>
-  <todo-list></todo-list>
-    </el-main>
-  </el-container>
-
-</template>
-
-<script lang="ts">
-import { Options, Vue } from 'vue-class-component';
-import TodoList from './components/TodoList.vue';
-
-@Options({
-  components: {
-    TodoList,
-  },
-})
-export default class App extends Vue {}
+<script setup lang="ts">
+import TodoList from "./components/TodoForm.vue";
 </script>
 
-<style>
-body{
-  margin:0;
+<template>
+  <header>
+    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
 
+    <div class="wrapper">
+      <TodoList />
+    </div>
+  </header>
+
+  <main>
+    <TheWelcome />
+  </main>
+</template>
+
+<style scoped>
+header {
+  line-height: 1.5;
 }
-.el-container{
-  background-color: #e9eef3;
-  color:var(--el-text-color-primary);
-  text-align:center;
+
+.logo {
+  display: block;
+  margin: 0 auto 2rem;
 }
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
- 
+
+@media (min-width: 1024px) {
+  header {
+    display: flex;
+    place-items: center;
+    padding-right: calc(var(--section-gap) / 2);
+  }
+
+  .logo {
+    margin: 0 2rem 0 0;
+  }
+
+  header .wrapper {
+    display: flex;
+    place-items: flex-start;
+    flex-wrap: wrap;
+  }
 }
 </style>

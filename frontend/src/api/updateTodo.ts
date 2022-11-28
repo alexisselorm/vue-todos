@@ -1,7 +1,6 @@
 import axios from "axios";
-import { ElMessage } from "element-plus";
 import loadTodos from "./loadTodos";
-import Todo from "./types";
+import type Todo from "./types";
 
 const updateTodo = async (todo: Todo) => {
   console.log("Todo", todo);
@@ -9,10 +8,6 @@ const updateTodo = async (todo: Todo) => {
     id: todo.id,
     title: todo.title,
     completed: todo.completed,
-  });
-  ElMessage({
-    message: "Todo updated",
-    type: "success",
   });
   await loadTodos();
 };
