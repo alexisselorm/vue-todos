@@ -34,9 +34,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <tr v-for="todo in todos" :key="todo.id"
+                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Apple MacBook Pro 17"
+                        {{ todo.title }}
                     </th>
                     <td class="px-6 py-4">Sliver</td>
                 </tr>
@@ -49,25 +50,31 @@
     {{ todos }}
 </template> -->
 <script setup lang="ts">
-// import createTodo from '@/api/createTodo'
+import { loadTodos } from "@/api/loadTodos";
+import type Todo from "@/api/types";
 // import updateTodo from '@/api/updateTodo'
 // import deleteTodo from '@/api/deleteTodo'
-// import { ref } from 'vue'
 
 const cancelDelete = async () => {
-    console.log('Cancel the delete')
-}
+    console.log("Cancel the delete");
+};
 </script>
 
 <script lang="ts">
-import { loadTodos } from '@/api/loadTodos'
-
 export default {
-    name: 'TodoList',
-    components: {},
-    async mounted() {
-        const todos = await loadTodos()
-        console.log(todos)
+    name: "TodoList",
+    data() {
+        return {
+            todos: [],
+        };
     },
-}
+    async mounted() {
+        try {
+            const todos = await loadTodos();
+            this.todos = todos;
+        } catch (error) {
+            throw new Error(`Backend is ${error}`);
+        }
+    },
+};
 </script>
