@@ -40,8 +40,7 @@
                         {{ todo.title }}
                     </th>
                     <td class="px-6 py-4">
-                        <input v-model="todo.completed" @click="updateTodo(todo.id)" type="checkbox" id="html"
-                            name="fav_language" />
+                        <input v-model="todo.completed" @click="updateTodo(todo.id)" type="checkbox" />
                     </td>
                     <td class="px-6 py-4">
                         <button @click="deleteTodo(todo.id)" type="submit"
