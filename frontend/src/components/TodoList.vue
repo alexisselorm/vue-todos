@@ -14,11 +14,11 @@
                         {{ todo.title }}
                     </th>
                     <td class="px-6 py-4">
-                        <input v-model="todo.completed" :value="todo.completed" @click="updateTodo(todo.id)"
-                            type="checkbox" />
+                        <input v-model="todo.completed" @click="updateTodo(todo)" type="checkbox"
+                            :checked="!!(todo.completed)" />
                     </td>
                     <td class="px-6 py-4">
-                        <button @click="deleteTodo(todo.id)" type="submit"
+                        <button @click="deleteTodo(todo)" type="submit"
                             class="p-1 text-red-500 bg-red-200 border border-red-600 rounded-full">Delete</button>
                     </td>
                 </tr>
@@ -31,13 +31,14 @@
     {{ todos }}
 </template> -->
 <script setup lang="ts">
+import { reactive } from "vue";
 import { loadTodos } from "@/api/loadTodos";
 import { updateTodo } from '@/api/updateTodo'
 import { deleteTodo } from '@/api/deleteTodo'
 
 
 
-let todos = await loadTodos()
-console.log(todos);
+let todos = reactive(await loadTodos())
+
 
 </script>

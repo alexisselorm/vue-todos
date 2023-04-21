@@ -5,7 +5,7 @@ import type Todo from './types'
 export const updateTodo = async (todo: Todo) => {
   console.log('Todo', todo)
   try {
-    await axios.put<Todo>(`http://127.0.0.1:8000/api/todos/${todo}`, {
+    await axios.put<Todo>(`http://127.0.0.1:8000/api/todos/${todo.id}`, {
       completed: !todo.completed,
     })
   } catch (error) {

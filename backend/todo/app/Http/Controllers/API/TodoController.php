@@ -15,9 +15,12 @@ class TodoController extends Controller
      */
     public function index()
     {
+        // Test out vue suspense
+        // sleep(3);
+
         //Get all Todos
         $todos = Todo::all();
-        return response()->json($todos,200);
+        return response()->json($todos, 200);
     }
 
     /**
@@ -30,7 +33,7 @@ class TodoController extends Controller
     {
         //Add todos to the todo list
         $todo = Todo::create($request->all());
-        return response()->json($todo,200);
+        return response()->json($todo, 200);
     }
 
     /**
@@ -43,7 +46,7 @@ class TodoController extends Controller
     {
         //Get individual todos by id
         $todo = Todo::findOrFail($id);
-        return response()->json($todo,200);
+        return response()->json($todo, 200);
     }
 
     /**
@@ -59,7 +62,7 @@ class TodoController extends Controller
         $todo = Todo::findOrFail($id);
         $todo->update($request->all());
 
-        return response()->json($todo,200);
+        return response()->json($todo, 200);
     }
 
     /**
